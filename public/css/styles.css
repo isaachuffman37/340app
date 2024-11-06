@@ -4,3 +4,271 @@
 *:after {
   box-sizing: border-box;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensure padding and borders are included in element dimensions */
+}
+
+.title-link{
+  text-decoration: none;
+  color: black;
+}
+
+.account-link{
+  font-size: .7rem;
+  text-decoration: none;
+  color: black;
+  position: absolute;
+  top: .3rem;
+  right: .3rem;
+}
+
+
+#nav-list{
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+#card-h2{
+  font-size: .8rem;
+  margin-top: 1rem;
+}
+
+#intro-section{
+  position: relative;
+  width: 100%;
+}
+
+
+
+#car-image {
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  text-align: center;
+  position: absolute;
+  top: 0; 
+  left: 0; /* Overlay will be placed on the left side of the image */
+  width: 33.33%; /* Covers the left third of the image's width */
+  height: 66.66%; /* Covers the top two-thirds of the image's height */
+  padding: 0; /* Optional: Adds padding around the content */
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  color: rgba(1, 176, 211); /* White text for visibility */
+  display: flex; /* Allows better control over content positioning */
+  flex-direction: column; /* Aligns content vertically */
+  justify-content: center; /* Vertically centers content */
+}
+
+.own-link{
+  color: black;
+  margin: 0 auto;
+  width: 4rem;
+  padding: .4rem;
+  font-size: 8pt;
+  background-color: rgba(1, 176, 211);
+  
+}
+
+.upgrade-title{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#delorean-info{
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+#delorean-info li{
+  font-size: 8pt;
+}
+
+.review-title{
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+#upgrade-grid{
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1.2rem;
+}
+
+#upgrade-grid div img {
+  padding-top: .5rem;
+  height: 3rem;
+}
+
+#upgrade-grid div {
+  text-align: center;
+  background-color: rgba(1,176,211,255);
+}
+
+#upgrade-grid div a p {
+  background-color: white;
+  margin: 0px ;
+}
+
+.review-list li{
+  margin-bottom: .5rem;
+}
+
+#info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 2rem;
+}
+
+footer p {
+  font-size: .7rem;
+}
+
+@media screen and (min-width: 470px) {
+  #delorean-info li{
+    font-size: 1.4rem;
+  }
+
+  #card-h2{
+    font-size: 1.5rem;
+  }
+
+  #info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .title-link{
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .account-link{
+    font-size: 1rem;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+  }
+  .own-link{
+    margin: 0 auto;
+    padding: 5px;
+    width: 8rem;
+    padding: .8rem;
+    color: black;
+    font-size: 15pt;
+    background-color: rgba(1, 176, 211);
+  }
+
+  #delorean-reviews {
+    grid-row: 1;
+    grid-column: 2/3;
+    margin-left: 1rem;
+  }
+
+  #upgrades{
+    margin-right: 1rem;
+  }
+}
+
+
+@media screen and (min-width: 950px) {
+  #delorean-info li{
+    font-size: 2.5rem;
+  }
+
+  #upgrade-grid div{
+ max-width: 20rem;
+  }
+
+  #nav-list li{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  #car-image {
+    width: 90%;
+    max-height: 40rem;
+  }
+
+  #card-h2{
+    font-size: 3rem;
+  }
+
+  #info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .title-link{
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .account-link{
+    font-size: 1rem;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+  }
+  .own-link{
+    margin: 0 auto;
+    padding: 5px;
+    width: 16rem;
+    padding: .8rem;
+    color: black;
+    font-size: 2.5rem;
+    background-color: rgba(1, 176, 211);
+  }
+
+  #delorean-reviews {
+    grid-row: 1;
+    grid-column: 2/3;
+    margin-left: 1rem;
+  }
+
+  #upgrades{
+    margin-right: 1rem;
+  }
+
+  .review-list li{
+    font-size: 1.5rem;
+  }
+
+  #upgrade-grid div a p {
+    font-size: 1.5rem;
+  }
+
+
+}
