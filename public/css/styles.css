@@ -146,6 +146,23 @@ footer p {
   font-size: .7rem;
 }
 
+/* Vehicle Details Page */
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.vehicle-description p {
+  font-size: 1.1rem;
+}
+
+
+#vehicle-full-img {
+  width: 100%;
+}
+
+
 @media screen and (min-width: 470px) {
   #delorean-info li{
     font-size: 1.4rem;
@@ -196,6 +213,12 @@ footer p {
 
   #upgrades{
     margin-right: 1rem;
+  }
+
+  .vehicle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.2rem;
   }
 }
 
@@ -274,5 +297,8 @@ footer p {
     font-size: 1.5rem;
   }
 
+  .vehicle-description p {
+    font-size: 2rem;
+  }
 
 }

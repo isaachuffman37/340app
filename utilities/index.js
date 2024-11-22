@@ -57,6 +57,53 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
 
+
+  Util.buildVehiclePage = async function(data){
+    let page;
+    let price;
+    let miles;
+    if(data.length > 0) {
+      let vehicleData = data[0];
+      if(vehicleData.inv_price){
+        price = formatCurrency(vehicleData.inv_price);
+      } else {
+        price = 'N/A'
+      }
+      if(vehicleData.inv_miles){
+        miles = formatMiles(vehicleData.inv_miles);
+      } else {
+        miles = 'N/A'
+      }
+        page = `<div class="vehicle-grid">
+                    <div>
+                        <img id= "vehicle-full-img" src="${vehicleData.inv_image}">
+                    </div>
+                    <div class = "vehicle-description">
+                        <p><b>Make</b>: ${vehicleData.inv_make}</p>
+                        <p><b>Model</b>: ${vehicleData.inv_model}</p> 
+                        <p><b>Year</b>: ${vehicleData.inv_year}</p> 
+                        <p><b>Color</b>: ${vehicleData.inv_color}</p> 
+                        <p><b>Price</b>: ${price}</p>
+                        <p><b>Miles</b>: ${miles}</p>
+                        <p><b>Description</b>: ${vehicleData.inv_description}</p>
+                    </div>
+                </div>`
+    } else {
+        page = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+    return page
+  }
+
+
+function formatCurrency(number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(number);
+}
+
+function formatMiles(number) {
+  return new Intl.NumberFormat('en-US').format(number);
+}
+
+
   /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
