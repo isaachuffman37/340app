@@ -32,4 +32,91 @@ invCont.buildByInvId = async function (req, res, next) {
     })
 }
 
+
+invCont.buildManagementView = async function (req, res, next){
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Inventory Management",
+    nav,
+  })
+}
+
+invCont.buildAddClassificationView = async function (req, res, next){
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    errors:null,
+  })
+}
+
+invCont.buildAddInventoryView = async function (req, res, next){
+  let nav = await utilities.getNav()
+  let classSelect = await utilities.buildClassificationList()
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory",
+    nav,
+    errors: null,
+    classSelect
+  })
+}
+
+
+invCont.addClassification = async function(req, res) {
+  let oldNav = await utilities.getNav()
+  const { classification_name } = req.body
+
+
+  const classResult = await invModel.addClassificationToTable(
+    classification_name
+  )
+
+  if (classResult) {
+    let nav = await utilities.getNav()
+    req.flash(
+      "notice",
+      `You successfully added a classification!`
+    )
+    res.status(201).render("inventory/management", {
+      title: "Manage Inventory",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the registration failed.")
+    res.status(501).render("inventory/add-classification", {
+      title: "Add Classification",
+      oldNav,
+      errors: null
+    })
+  }
+}
+
+invCont.addInventory = async function(req, res) {
+  let nav = await utilities.getNav()
+  const { classification_id } = req.body
+  const invResult = await invModel.addInventoryToTable(req.body)
+
+  if (invResult) {
+    req.flash(
+      "notice",
+      `You successfully added a vehicle!`
+    )
+    res.status(201).render("inventory/management", {
+      title: "Manage Inventory",
+      nav,
+      errors: null,
+    })
+  } else {
+    let classSelect = await utilities.buildClassificationList(classification_id)
+    req.flash("notice", "Sorry, failed to add inventory to database.")
+    res.status(501).render("inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      errors: null,
+      classSelect
+    })
+  }
+}
+
 module.exports = invCont

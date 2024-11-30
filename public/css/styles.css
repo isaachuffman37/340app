@@ -163,6 +163,16 @@ footer p {
 }
 
 
+
+/* management page */
+.management-ul{
+  margin:1rem;
+}
+.management-ul li{
+  font-size: 2rem;
+}
+
+
 @media screen and (min-width: 470px) {
   #delorean-info li{
     font-size: 1.4rem;
@@ -248,7 +258,7 @@ label {
   font-weight: bold;
   color: #444;
 }
-input {
+input, select, textarea {
   padding: 10px;
   font-size: 20px;
   border: 1px solid #ccc;
@@ -257,7 +267,7 @@ input {
   transition: border-color 0.3s;
 }
 
-input:focus {
+input:focus, select:focus, textarea:focus{
   border-color: #007BFF;
 }
 
@@ -294,11 +304,11 @@ input:focus {
   color: #0056b3;
 }
 
-input:invalid {
+input:invalid, select:invalid, textarea:invalid {
   border-color: #FF6347;
 }
 
-input:invalid:focus {
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
   border-color: #FF4500;
 }
 
