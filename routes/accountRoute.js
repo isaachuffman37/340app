@@ -14,8 +14,11 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    utilities.handleErrors(accountController.registerAccount)
+    utilities.handleErrors(accountController.accountLogin) 
 )
+
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement));
+
 
 
 
