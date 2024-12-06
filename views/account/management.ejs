@@ -14,4 +14,31 @@
   <% } %>
 
 
-<h2>You're logged in!</h2>
+<!-- Management View -->
+<div id="account-management-view">
+
+  <!-- Greet the user based on account type -->
+  <h2 id="greeting">Welcome, <%= account_firstname %>!</h2>
+  <h3 id="account-info-header">Here is your account info:</h3>
+  <div id="account-info">
+    <p class="account-detail">First Name: <%= account_firstname %></p>
+    <p class="account-detail">Last Name: <%= account_lastname %></p>
+    <p class="account-detail">Email: <%= account_email %></p>
+  </div>
+
+  <!-- Update account information link -->
+  <p id="update-link">
+    <a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a>
+  </p>
+
+  <!-- Conditional display for "Manage Inventory" -->
+  <% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
+    <div id="inventory-management">
+      <h3>Inventory Management</h3>
+      <p>
+        <a href="/inv/" id="inventory-link">Access Inventory Management</a>
+      </p>
+    </div>
+  <% } %>
+
+</div>

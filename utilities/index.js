@@ -157,6 +157,25 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+/* ****************************************
+* Middleware to verify Admin/Employee access
+**************************************** */
+Util.checkAdminOrEmployee = (req, res, next) => {
+  if (res.locals.loggedin) {
+    console.log(res.locals.accountData.account_type)
+    if (res.locals.accountData.account_type == 'Employee' || res.locals.accountData.account_type == 'Admin') {
+      next()
+    } else {
+      req.flash("notice", "You must login as an Admin or Employee to access Inventory Management")
+      return res.redirect("/account/login")
+    }
+  } else {
+    req.flash("notice", "Please log in with an Employee or Admin account.")
+    return res.redirect("/account/login")
+  }
+ }
+
+
  /* ****************************************
  *  Check Login
  * ************************************ */
