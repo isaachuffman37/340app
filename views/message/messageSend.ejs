@@ -1,0 +1,60 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+
+<div class="form-container">
+    <form action="/messages/send" method="post">
+        <!-- Insert the dynamically built account list -->
+        <div class="form-group">
+            <label for="accountList">Recipient:</label>
+            <%- accountsList %>
+        </div>
+    
+        <!-- Input for message subject -->
+        <div class="form-group">
+            <label for="message_subject">Subject:</label>
+            <input 
+                type="text" 
+                name="message_subject" 
+                id="message_subject" 
+                pattern="[A-Za-z0-9 ]+" 
+                title="Only alphanumeric characters are allowed."
+                placeholder="Enter the model"
+                value ="<%= locals.message_subject %>"
+                required />
+        </div>
+    
+        <!-- Textarea for message body -->
+        <div class="form-group">
+            <label for="message_body">Message:</label>
+            <textarea 
+                name="message_body" 
+                id="message_body" 
+                rows="5" 
+                placeholder="Type your message" 
+                required> <%- locals.message_body %></textarea>
+        </div>
+    
+        <!-- Submit button -->
+        <div>
+            <button type="submit" class="login-btn">Send</button>
+        </div>
+        <input type="hidden" name="message_from"
+      <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
+      <% } %>>
+    </form>
+</div>
+  
+

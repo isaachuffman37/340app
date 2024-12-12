@@ -1,0 +1,60 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+
+  <div id="messageDetails" class="message-container">
+    <p id="create" class="message-create"> 
+        <b>Received: </b>
+        <%= new Date(message_created).toLocaleString('en-US', { 
+            year: 'numeric', month: '2-digit', day: '2-digit', 
+            hour: 'numeric', minute: 'numeric', second: 'numeric', 
+            hour12: true, timeZoneName: 'short' 
+        }) %>
+    </p>
+    <p id="sender" class="message-sender"><b>Sender:</b> <%= messageSender %></p>
+    <p id="subject" class="message-subject"><b>Subject:</b> <%= message_subject %></p>
+    <p id="bodyLabel" class="message-body-label"><b>Message:</b></p>
+    <p id="body" class="message-body"><%= message_body %></p>
+  
+    <div id="messageActions" class="message-actions">
+        <p>
+            <a 
+              id="returnInbox" 
+              class="action-link" 
+              href="<%= message_archived ? '/messages/archive' : '/messages/' %>">
+              Return to <%= message_archived ? 'Archive' : 'Inbox' %>
+            </a>
+        </p>
+      <p><a id="replyMessage" class="action-link" href="/messages/reply/<%= message_id %>">Reply</a></p>
+      <% if (!message_read) { %>
+    <form id="unarchiveMessageForm" action="/messages/read/<%= message_id %>" method="POST" style="display: inline;">
+        <button type="submit" class="action-link">Mark as Read</button>
+    </form>
+    <% }%>
+      <% if (message_archived) { %>
+        <form id="unarchiveMessageForm" action="/messages/unarchive/<%= message_id %>" method="POST" style="display: inline;">
+            <button type="submit" class="action-link">Unarchive</button>
+        </form>
+      <% } else { %>
+        <form id="archiveMessageForm" action="/messages/archive/<%= message_id %>" method="POST" style="display: inline;">
+            <button type="submit" class="action-link">Archive</button>
+        </form>
+      <% } %>
+      <p><a id="deleteMessage" class="action-link delete-link" href="/messages/delete/<%= message_id %>">Delete</a></p>
+    </div>
+  </div>
+
+
+

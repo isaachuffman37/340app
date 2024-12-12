@@ -1,0 +1,56 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+<p class="message-view-link"><a href="/messages/send">Send a Message</a></p>
+
+<p class="message-view-link"><a href="/messages/">View Inbox</a></p>
+
+<table id="inboxDisplay">
+    <thead>
+        <tr>
+            <th>Received</th>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (archivedData && archivedData.length > 0) { %>
+            <% archivedData.forEach(function(message) { %>
+                <tr>
+                    <!-- Display the formatted date with time zone abbreviation -->
+                    <td><%= new Date(message.message_created).toLocaleString('en-US', { 
+                            weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', 
+                            hour: 'numeric', minute: 'numeric', second: 'numeric', 
+                            hour12: true, timeZoneName: 'short' 
+                        }) %></td>
+
+                    <!-- Display the sender's full name (first + last name) -->
+                    <td><%= message.account_firstname %> <%= message.account_lastname %></td>
+
+                    <!-- Display message subject as a link -->
+                    <td><a href="/messages/details/<%= message.message_id %>" title="Click to view message details"><%= message.message_subject %></a></td>
+
+                    <!-- Display read status -->
+                    <td class="<%= message.message_read ? 'Read' : 'Unread' %>"><%= message.message_read ? 'Read' : 'Unread' %></td>
+                </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+                <td colspan="4">Your archive is empty</td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

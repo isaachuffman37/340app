@@ -14,6 +14,7 @@ const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const messageRoute = require("./routes/messageRoute")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
@@ -64,6 +65,8 @@ app.get("/", utilities.handleErrors(baseController.throwError))
 app.use("/inv", inventoryRoute)
 // Account Route
 app.use("/account", accountRoute)
+// Account Route
+app.use("/messages", messageRoute)
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})

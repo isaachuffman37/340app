@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const accountModel = require('../models/account-model')
+const messageModel = require('../models/message-model')
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const Util = {}
@@ -126,6 +128,25 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+Util.buildAccountList = async function (account_id = null) {
+  let data = await accountModel.getAccounts()
+  let accountList =
+    '<select name="message_to" id="accountList" required>'
+    accountList += "<option value=''>Choose a Recipient</option>"
+  data.rows.forEach((row) => {
+    accountList += '<option value="' + row.account_id + '"'
+    if (
+      account_id != null &&
+      row.account_id == account_id
+    ) {
+      accountList += " selected "
+    }
+    accountList += ">" + row.account_firstname + " " + row.account_lastname + "</option>"
+  })
+  accountList += "</select>"
+  return accountList
+}
+
 
   /* ****************************************
  * Middleware For Handling Errors
@@ -187,5 +208,34 @@ Util.checkAdminOrEmployee = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+Util.checkCorrectUser = (req, res, next) => {
+  let reqAccountId = parseInt(req.params.account_id)
+  let signedInId = parseInt(res.locals.accountData.account_id)
+
+  if(reqAccountId == signedInId){
+    next()
+  } else {
+    req.flash("notice", "You are trying to access account info that is not yours. Shame on you.")
+    return res.redirect('/account/')
+  }
+
+}
+
+Util.checkIsUsersMessage = async (req, res, next) => {
+  let message_id = req.params.message_id
+  let account_id = parseInt(res.locals.accountData.account_id)
+  let messageData = await messageModel.getMessageDetailsById(message_id)
+  let message_to = parseInt(messageData?.message_to)
+
+
+  if(message_to == account_id){
+    next()
+  } else {
+    req.flash("notice", "You are trying to access message info that is not yours. Shame on you.")
+    return res.redirect('/messages/')
+  }
+
+}
 
 module.exports = Util

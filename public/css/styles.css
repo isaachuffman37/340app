@@ -181,6 +181,154 @@ footer p {
 }
 
 
+/* Table container styling */
+#inboxDisplay {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Table header styling */
+#inboxDisplay thead {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 22px;
+}
+
+#inboxDisplay th {
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Table body row styling */
+#inboxDisplay tbody tr {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+/* Table body row hover effect */
+#inboxDisplay tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Table cell styling */
+#inboxDisplay td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 18px;
+}
+
+/* Column alignment */
+#inboxDisplay td a {
+  color: #800080;
+  font-weight: bold;
+}
+
+#inboxDisplay td a:hover {
+  text-decoration: underline;
+}
+
+/* Empty inbox message styling */
+#inboxDisplay tbody tr td[colspan="4"] {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+  padding: 20px 0;
+}
+
+/* Status column */
+#inboxDisplay td:nth-child(4) {
+  font-weight: bold;
+}
+
+#inboxDisplay td:nth-child(4).Unread {
+  color: #FF6347; /* Tomato color for Unread */
+}
+
+#inboxDisplay td:nth-child(4).Read {
+  color: #4CAF50; /* Green color for Read */
+}
+
+/* Styling for the message container */
+#messageDetails.message-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sender and subject styling */
+#sender.message-sender, #subject.message-subject, #create.message-create{
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Message body label and content */
+#bodyLabel.message-body-label {
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 2rem;
+}
+
+#body.message-body {
+  margin: 10px 0 20px 0;
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Styling for message actions */
+#messageActions.message-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#messageActions .action-link {
+  display: inline-block;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#messageActions .action-link:hover {
+  background-color: #0056b3;
+  color: #e6e6e6;
+}
+
+/* Special styling for the delete link */
+#messageActions .delete-link {
+  border-color: #dc3545;
+  background-color: #dc3545;
+}
+
+#messageActions .delete-link:hover {
+  background-color: #b02a37;
+  color: #fff;
+}
+
+
+.message-view-link {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+
 @media screen and (min-width: 470px) {
   #delorean-info li{
     font-size: 1.4rem;
@@ -448,6 +596,21 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
   font-size: 1.7rem;
 }
 
+#message-management {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+#message-management h3{
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+}
+#message-management p{
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
 #inventory-link {
   text-decoration: none;
   color: #fff;
@@ -460,6 +623,18 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 
 #inventory-link:hover {
   background-color: #1e7e34;
+}
+
+.notice li{
+  font-size: 1.3rem;
+  color:#1e7e34 ;
+  text-align: center;
+}
+
+.failure li{
+  font-size: 1.3rem;
+  color:#FF6347 ;
+  text-align: center;
 }
 
 @media screen and (min-width: 950px) {
